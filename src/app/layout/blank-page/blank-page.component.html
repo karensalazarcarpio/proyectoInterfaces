@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-6">
-            <form #f="ng-form">
+            <form (ngSubmit)="submit()">
                 <div class="row">
                     <div class="col-lg-6">
                         Desde:
-                        <select name="origen" class="custom-select" id="inputGroupSelect01" ngModel>
-
-                            <option *ngFor="let departamento of arrayDepartamentos" [ngValue]="origen">{{departamento}}
+                        <select name="origen" class="custom-select" id="inputGroupSelect01" (change)="cambiarOrigen($event)">
+                            <option value="" selected>Seleccione</option>    
+                            <option *ngFor="let departamento of arrayDepartamentos" >{{departamento}}
                             </option>
 
                         </select>
@@ -15,9 +15,9 @@
                     </div>
                     <div class="col-lg-6">
                         A:
-                        <select name="destino" class="custom-select" id="inputGroupSelect01" ngModel>
-
-                            <option *ngFor="let departamento of arrayDepartamentos" [ngValue]="destino">{{departamento}}
+                        <select name="destino" class="custom-select" id="inputGroupSelect01" (change)="cambiarDestino($event)">
+                                <option value="" selected>Seleccione</option>    
+                            <option *ngFor="let departamento of arrayDepartamentos">{{departamento}}
                             </option>
 
                         </select>
@@ -26,13 +26,14 @@
                     </div>
                 </div>
                 <div class="row">
+                  
                     <div class="col-lg-6">
                         Partida:
-                        <input type="date" class="form-control">
+                        <input type="date" name ="karen" class="form-control" [(ngModel)]="itinerarioForm.fechaPartida">
                     </div>
                     <div class="col-lg-6">
                         Retorno:
-                        <input type="date" class="form-control">
+                        <input type="date" name="karen2" class="form-control"  [(ngModel)]="itinerarioForm.fechaRetorno">
 
 
                     </div>
@@ -48,30 +49,20 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Origen</th>
+                            <th scope="col">Destino</th>
+                            <th scope="col">FechaPartida</th>
+                            <th scope="col">FechaRetorno</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                    <tbody >
+                        <tr *ngFor="let itinerario of listaItinerario">
+                            <td>{{itinerario.origen}}</td>
+                            <td>{{itinerario.destino}}</td>
+                            <td>{{itinerario.fechaPartida}}</td>
+                            <td>{{itinerario.fechaRetorno}}</td>
+                        </tr>    
+                            
                     </tbody>
                 </table>
             </div>

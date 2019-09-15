@@ -11,7 +11,9 @@ export class BlankPageComponent implements OnInit {
     private listaItinerario: Itinerario[]= [];
     private itinerarioForm:Itinerario;
 
-    constructor() { }
+    constructor() { 
+        this.itinerarioForm=new Itinerario();
+    }
 
     ngOnInit() { 
         this.arrayDepartamentos.push('La Paz');
@@ -24,10 +26,20 @@ export class BlankPageComponent implements OnInit {
         this.arrayDepartamentos.push('Chuquisaca');
         this.arrayDepartamentos.push('Beni');
 
-        this.itinerarioForm=new Itinerario();
+        
 
     }
     private adicionarForm(){
-        console.log(this.itinerarioForm);
+        //console.log(this.itinerarioForm);
+        this.listaItinerario.push(this.itinerarioForm);   
+    }
+    private cambiarOrigen($event){
+        //console.log($event.target.value);
+        this.itinerarioForm.origen=$event.target.value;
+    }
+    
+    private cambiarDestino($event){
+        //console.log($event.target.value);
+        this.itinerarioForm.destino=$event.target.value;
     }
 }
